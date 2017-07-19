@@ -98,11 +98,11 @@ The performance of Deeplab Large-FOV trained in pytorch is different from it's p
 
 The following table list the mean IOU accross the 21 classes in Pascal VOC 2012. The results are for the 'val' set.
 
-| ** Training Regime** | **Training Regime 1** | **Training Regime 2 ** |
+| ** Training Regime ** | ** Training Regime 1 ** | ** Training Regime 2 ** |
 |---|---|---|
-|** With Dropout layers** | 61.576 % | 65.22 % |
-|** Without Dropout layers** | 63.570 % | 65.65 % |
-|** From Caffe** | **62.25 %** | **65.88 % **|
+|** With Dropout layers ** | 61.576 % | 65.22 % |
+|** Without Dropout layers ** | 63.570 % | 65.65 % |
+|** From Caffe ** | ** 62.25 % ** | ** 65.88 % **|
 
 ** Important Note: Dropout Layers are being disabled by using `model.eval()`, instead of `model.train()` in the 'train_v1/2.py' scripts.**
 
