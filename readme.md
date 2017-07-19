@@ -102,7 +102,7 @@ The following table list the mean IOU accross the 21 classes in Pascal VOC 2012.
 |---|---|---|
 |**With Dropout layers** | 61.576 % | 65.22 % |
 |**Without Dropout layers** | 63.570 % | 65.65 % |
-|**From Caffe** | **2.25 %** | **65.88 %**|
+|**From Caffe** | **62.25 %** | **65.88 %**|
 
 ** Important Note: Dropout Layers are being disabled by using `model.eval()`, instead of `model.train()` in the 'train_v1/2.py' scripts.**
 
