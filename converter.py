@@ -28,7 +28,7 @@ if __name__ == '__main__':
     import caffe
     model_wts_path = args['<model_caffemodel>']
     model_def_path = args['<model_prototxt>']
-    caffe_model = caffe.Net(model_def_path, model_wts_path, caffe.TRAIN)
+    caffe_model = caffe.Net(model_def_path, model_wts_path)
     
     pytorch_model = Net()
     dict = pytorch_model.state_dict()
