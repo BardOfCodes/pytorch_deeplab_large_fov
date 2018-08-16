@@ -5,6 +5,7 @@ import torch.backends.cudnn as cudnn
 cudnn.enabled = False
 ##############################################################
 from docopt import docopt
+import os
 import time
 import torch.optim as optim
 
@@ -35,7 +36,11 @@ if __name__ == '__main__':
 
     model = Net()
     if(args['--init_file']):
-        model.load_state_dict(torch.load(args['--init_file']))
+        params = torch.load(args['--init_file'])
+        for k, v in params.items():
+            if k.endswith('.bias'):
+                v.squeeze_()
+        model.load_state_dict(params)
         
     max_iter = int(args['--max_iter']) 
     batch_size = int(args['--batch_size'])
@@ -46,7 +51,7 @@ if __name__ == '__main__':
     snapshot_dir = args['--snapshot_dir']
     if not snapshot_dir:
         if(args['--init_file']):
-            snapshot_dir = join(strsplit(args['--init_file'],'/')[:-1])
+            snapshot_dir = os.path.dirname(args['--init_file'])
         else:
             snapshot_dir = '.'
     gt_path =  args['<gt_path>']
@@ -90,7 +95,7 @@ if __name__ == '__main__':
             print('learning rate kept at ', lr)
             print('time taken ',time.time()-start_time)
             print('saving snapshot')
-            torch.save(model.state_dict(),snapshot_dir+'/deeplab_large_fov_'+str(iter)+'.pth')
+            torch.save(model.state_dict(), os.path.join(snapshot_dir, 'deeplab_large_fov_{:d}.pth'.format(iter)))
     print('Last snapshot')
-    torch.save(model.state_dict(),snapshot_dir+'/deeplab_large_fov_last.pth')
+    torch.save(model.state_dict(), os.path.join(snapshot_dir, '/deeplab_large_fov_last.pth'))
     print('Total Time taken',time.time()-start_time)
