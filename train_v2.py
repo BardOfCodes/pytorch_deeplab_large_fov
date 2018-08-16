@@ -96,5 +96,5 @@ if __name__ == '__main__':
             print('saving snapshot')
             torch.save(model.state_dict(), os.path.join(snapshot_dir, 'deeplab_large_fov_{:d}.pth'.format(iter)))
     print('Last snapshot')
-    torch.save(model.state_dict(),snapshot_dir+'/deeplab_large_fov_last.pth')
+    torch.save(model.state_dict(), os.path.join(snapshot_dir, '/deeplab_large_fov_last.pth'))
     print('Total Time taken',time.time()-start_time)
